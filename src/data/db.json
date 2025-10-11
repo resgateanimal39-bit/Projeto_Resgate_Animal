@@ -1,0 +1,23 @@
+{
+    "User":[
+        {
+            "id" : 1 ,
+            "nome" : "will" ,
+            "email" : "teste@gmail.com",
+            "cargo" : "adm"
+        },        
+        {
+            "id" : 2 ,
+            "nome" : "keiich" ,
+            "email" : "teste2@gmail.com",
+            "cargo" : "funcionario"
+        }
+    ],
+    "Pet":[
+        {}
+    ],
+    
+    "Tutor":[
+        {}
+    ]
+}
