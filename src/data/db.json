@@ -11,6 +11,12 @@
             "nome" : "keiich" ,
             "email" : "teste2@gmail.com",
             "cargo" : "funcionario"
+        },
+        {
+            "id" : 3 ,
+            "nome" : "lya" ,
+            "email" : "teste3@gmail.com",
+            "cargo" : "funcionario"
         }
     ],
     "Pet":[
