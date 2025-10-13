@@ -1,6 +1,6 @@
 from controllers.animal_controller import*
 
-def menu():
+def menu_terminal():
     while True:
         print("""
 =========== MENU ===========

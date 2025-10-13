@@ -54,7 +54,7 @@ def listar_usuarios():
     print()
 
 
-# ======== Funções de cadastro =======================================================================
+# # Funções de cadastro
 
 def adicionar_tutor():
     nome = input("Nome do tutor: ")
@@ -126,7 +126,7 @@ def adicionar_usuario():
     print(f"\nUsuário '{nome}' foi cadastrado com sucesso.\n")
 
 
-# ======== Adoção e devolução =======================================================================================
+# # Funções de doaçao e de devoluçao
 
 def adotar_pet():
     Tutor = Query()
@@ -213,7 +213,7 @@ def devolver_pet():
     print(f"Pet '{pet[0]['nome']}' foi devolvido e agora está sem tutor.\n")
 
 
-# ======== Consultas =============================================================================
+# # pesquisa
 
 def pesquisar_por_especie():
     Pet = Query()
@@ -253,7 +253,7 @@ def consultar_tutor():
     print()
 
 
-# ======== Resetar Banco =================================================================================
+# # Funções de resetar o banco
 def limpar_banco():
     tutores.truncate()
     pets.truncate()
