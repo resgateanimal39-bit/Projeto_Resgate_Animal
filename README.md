@@ -4,6 +4,6 @@ Projeto da Softex
 baixe a biblioteca tinydb
 no cmd:
 
-pip install tinydb
+python -m pip install tinydb
 
 Roda o arquivo app.py
