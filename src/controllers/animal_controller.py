@@ -1,7 +1,64 @@
-from models.animal_model import*
+from models.animal_model import *
 from tinydb import Query
+from models.pets_model import Pet
+from models.tutores_model import Tutor
+from models.usuarios_model import Usuario
 
 
+# # Funções de cadastro
+def adicionar_tutor():
+    nome = input("Nome do tutor: ")
+    telefone = input("Telefone: ")
+    email = input("Email: ")
+    endereco = input("Endereço: ")
+    status_aptidao = input("Status de aptidão: ")
+    novo_id = len(tutores) + 1
+    tutor = Tutor(novo_id, nome, telefone, email, endereco, status_aptidao)
+    tutores.insert(tutor.to_dict())
+
+
+def adicionar_pet():
+    nome = input("Nome do pet: ")
+    especie = input("Espécie (cão/gato/etc): ")
+    idade = int(input("Idade: "))
+    local_resgate = input("Local de resgate: ")
+    status = input("Status (Em Avaliação Veterinária, Disponível, Adotado, etc): ")
+
+    print("\nTutores disponíveis:")
+    listar_tutores()
+    tutor_id = input("Digite o ID do tutor (ou aperte Enter se não tiver): ")
+
+    if tutor_id.strip():
+        tutor_id = int(tutor_id)
+        TutorQuery = Query()
+        tutor_encontrado = tutores.search(TutorQuery.id == tutor_id)
+        if tutor_encontrado:
+            tutor_nome = tutor_encontrado[0]["nome"]
+        else:
+            print("Tutor não encontrado. O pet será cadastrado sem tutor.")
+            tutor_id = None
+            tutor_nome = "Sem tutor"
+    else:
+        tutor_id = None
+        tutor_nome = "Sem tutor"
+
+    novo_id = len(pets) + 1
+    pet = Pet(
+        novo_id, nome, especie, idade, local_resgate, status, tutor_id, tutor_nome
+    )  # 👈 corrigido
+    pets.insert(pet.to_dict())
+    print(f"\nPet '{nome}' foi cadastrado com sucesso.\n")
+
+
+def adicionar_usuario():
+    nome = input("Nome do usuário: ")
+    idade = int(input("Idade: "))
+    novo_id = len(usuarios) + 1
+    usuario = Usuario(novo_id, nome, idade)
+    usuarios.insert(usuario.to_dict())
+
+
+# # Funções de mostrar lista
 def listar_tutores():
     dados = tutores.all()
     if not dados:
@@ -54,79 +111,8 @@ def listar_usuarios():
     print()
 
 
-# # Funções de cadastro
-
-def adicionar_tutor():
-    nome = input("Nome do tutor: ")
-    telefone = input("Telefone: ")
-    email = input("Email: ")
-    endereco = input("Endereço: ")
-    status_aptidao = input("Status de aptidão: ")
-    novo_id = len(tutores) + 1
-    tutores.insert({
-        "id": novo_id,
-        "nome": nome.lower(),
-        "telefone": telefone,
-        "email": email.lower(),
-        "endereco": endereco.lower(),
-        "status_aptidao": status_aptidao.lower()
-    })
-    print(f"\nTutor '{nome}' foi cadastrado com sucesso.\n")
-
-
-def adicionar_pet():
-    nome = input("Nome do pet: ")
-    especie = input("Espécie (cão/gato/etc): ")
-    idade = int(input("Idade: "))
-    local_resgate = input("Local de resgate: ")
-    status = input("Status (Em Avaliação Veterinária, Disponível, Adotado, etc): ")
-
-    print("\nTutores disponíveis:")
-    listar_tutores()
-    tutor_id = input("Digite o ID do tutor (ou aperte Enter se não tiver): ")
-
-    if tutor_id.strip():
-        tutor_id = int(tutor_id)
-        Tutor = Query()
-        tutor_encontrado = tutores.search(Tutor.id == tutor_id)
-        if tutor_encontrado:
-            tutor_nome = tutor_encontrado[0]["nome"]
-        else:
-            print("Tutor não encontrado. O pet será cadastrado sem tutor.")
-            tutor_id = None
-            tutor_nome = "Sem tutor"
-    else:
-        tutor_id = None
-        tutor_nome = "Sem tutor"
-
-    novo_id = len(pets) + 1
-    pets.insert({
-        "id": novo_id,
-        "nome": nome.lower(),
-        "especie": especie.lower(),
-        "idade": idade,
-        "local_resgate": local_resgate.lower(),
-        "status": status.lower(),
-        "tutor_id": tutor_id,
-        "tutor": tutor_nome
-    })
-    print(f"\nPet '{nome}' foi cadastrado com sucesso.\n")
-
-
-def adicionar_usuario():
-    nome = input("Nome do usuário: ")
-    idade = int(input("Idade: "))
-
-    novo_id = len(usuarios) + 1
-    usuarios.insert({
-        "id": novo_id,
-        "nome": nome.lower(),
-        "idade": idade
-    })
-    print(f"\nUsuário '{nome}' foi cadastrado com sucesso.\n")
-
-
 # # Funções de doaçao e de devoluçao
+
 
 def adotar_pet():
     Tutor = Query()
@@ -175,10 +161,7 @@ def adotar_pet():
         print("Pet não encontrado.\n")
         return
 
-    pets.update({
-        "tutor_id": tutor_id,
-        "tutor": tutor_nome
-    }, Pet.id == pet_id)
+    pets.update({"tutor_id": tutor_id, "tutor": tutor_nome}, Pet.id == pet_id)
 
     print(f"Pet '{pet[0]['nome']}' foi adotado por {tutor_nome}.\n")
 
@@ -205,15 +188,13 @@ def devolver_pet():
         print("Pet não encontrado.\n")
         return
 
-    pets.update({
-        "tutor_id": None,
-        "tutor": "Sem tutor"
-    }, Pet.id == pet_id)
+    pets.update({"tutor_id": None, "tutor": "Sem tutor"}, Pet.id == pet_id)
 
     print(f"Pet '{pet[0]['nome']}' foi devolvido e agora está sem tutor.\n")
 
 
 # # pesquisa
+
 
 def pesquisar_por_especie():
     Pet = Query()
@@ -225,7 +206,9 @@ def pesquisar_por_especie():
     else:
         print(f"\nPets da espécie '{especie}':")
         for p in resultados:
-            print(f"ID: {p['id']} | Nome: {p['nome']} | Tutor: {p.get('tutor', 'Sem tutor')}")
+            print(
+                f"ID: {p['id']} | Nome: {p['nome']} | Tutor: {p.get('tutor', 'Sem tutor')}"
+            )
     print()
 
 
@@ -249,7 +232,9 @@ def consultar_tutor():
     else:
         print("\nTutor encontrado:")
         for t in resultado:
-            print(f"ID: {t['id']} | Nome: {t['nome']} | Telefone: {t['telefone']} | Email: {t['email']}")
+            print(
+                f"ID: {t['id']} | Nome: {t['nome']} | Telefone: {t['telefone']} | Email: {t['email']}"
+            )
     print()
 
 
