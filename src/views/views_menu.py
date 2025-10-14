@@ -2,8 +2,8 @@ from controllers.animal_controller import*
 
 def menu_terminal():
     while True:
+        print(7*"="+"Menu"+6*"=")
         print("""
-=========== MENU ===========
 1. Adicionar Tutor
 2. Adicionar Pet
 3. Adicionar Usuário
@@ -15,9 +15,8 @@ def menu_terminal():
 9. Pesquisar Pets por Espécie
 10. Consultar Tutor
 11. Limpar Banco
-0. Sair
-============================
-""")
+0. Sair""")
+        print(17*"=")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":

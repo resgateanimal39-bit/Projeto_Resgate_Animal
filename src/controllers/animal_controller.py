@@ -5,7 +5,6 @@ from models.tutores_model import Tutor
 from models.usuarios_model import Usuario
 
 
-# # Funções de cadastro
 def adicionar_tutor():
     nome = input("Nome do tutor: ")
     telefone = input("Telefone: ")
@@ -23,7 +22,6 @@ def adicionar_pet():
     idade = int(input("Idade: "))
     local_resgate = input("Local de resgate: ")
     status = input("Status (Em Avaliação Veterinária, Disponível, Adotado, etc): ")
-
     print("\nTutores disponíveis:")
     listar_tutores()
     tutor_id = input("Digite o ID do tutor (ou aperte Enter se não tiver): ")
@@ -45,7 +43,7 @@ def adicionar_pet():
     novo_id = len(pets) + 1
     pet = Pet(
         novo_id, nome, especie, idade, local_resgate, status, tutor_id, tutor_nome
-    )  # 👈 corrigido
+    )
     pets.insert(pet.to_dict())
     print(f"\nPet '{nome}' foi cadastrado com sucesso.\n")
 
@@ -58,7 +56,6 @@ def adicionar_usuario():
     usuarios.insert(usuario.to_dict())
 
 
-# # Funções de mostrar lista
 def listar_tutores():
     dados = tutores.all()
     if not dados:
@@ -109,9 +106,6 @@ def listar_usuarios():
                 f"Idade estimada: {u.get('idade', '?')}]"
             )
     print()
-
-
-# # Funções de doaçao e de devoluçao
 
 
 def adotar_pet():
@@ -193,9 +187,6 @@ def devolver_pet():
     print(f"Pet '{pet[0]['nome']}' foi devolvido e agora está sem tutor.\n")
 
 
-# # pesquisa
-
-
 def pesquisar_por_especie():
     Pet = Query()
     especie = input("Digite a espécie (ex: gato, cachorro): ").lower()
@@ -238,7 +229,6 @@ def consultar_tutor():
     print()
 
 
-# # Funções de resetar o banco
 def limpar_banco():
     tutores.truncate()
     pets.truncate()
