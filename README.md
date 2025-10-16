@@ -23,7 +23,7 @@ Python 3.12
 
 > ⚠️ OBS.:
 
-Para rodar aplicações Python, certifique-se de que sua máquina possui as seguintes tecnologias instaladas:
+Para rodar aplicações Python, certifique-se de que sua máquina possui as seguintes tecnologias instaladas, além de instalar a biblioteca tinydb no terminal do Visual Studio Code:
 
 - Python 
 - Visual Studio Code
