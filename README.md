@@ -1,5 +1,6 @@
-# 🐾 Projeto - Resgate Animal
-<img src="https://github.com/user-attachments/assets/c3ce81a1-c21e-4a73-abad-b95c70acd228" width="200">
+<p align="center"> # 🐾 Projeto - Resgate Animal
+
+<p align="center"> <img src="https://github.com/user-attachments/assets/c3ce81a1-c21e-4a73-abad-b95c70acd228" width="200">
 
 > 📝 Descrição:
 
@@ -20,7 +21,7 @@ O Projeto Resgate Animal foi desenvolvido por alunos da Bolsa Futuro Digital, in
 
 > 🔧 Tecnologias Utilizadas:
 
-Python 3.12
+- Python 3.12
 
 > ⚠️ OBS.:
 
