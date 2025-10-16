@@ -1,4 +1,4 @@
-<p align="center"> # 🐾 Projeto - Resgate Animal
+<p align="center">  🐾 Projeto - Resgate Animal
 
 <p align="center"> <img src="https://github.com/user-attachments/assets/c3ce81a1-c21e-4a73-abad-b95c70acd228" width="200">
 
