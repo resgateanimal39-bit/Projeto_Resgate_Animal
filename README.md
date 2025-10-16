@@ -21,7 +21,7 @@ O Projeto Resgate Animal foi desenvolvido por alunos da Bolsa Futuro Digital, in
 
 > 🔧 Tecnologias Utilizadas:
 
-- Python 3.12
+-Python 3.12
 
 > ⚠️ OBS.:
 
@@ -32,6 +32,21 @@ Para rodar aplicações Python, certifique-se de que sua máquina possui as segu
 
 > 🚀 Rodando o projeto:
 
+No terminal do seu Visual Studio Code, siga os passos abaixo:
 
-
-
+```bash
+# Clone o Repositório
+  git clone https://github.com/resgateanimal39-bit/Projeto_Resgate_Animal.git
+```
+```bash
+#Vá até a pasta clonada
+  cd Projeto_Resgate_Animal
+```
+```bash
+#Instale a biblioteca tinydb
+  pip install tinydb
+```
+```bash
+#Execute o arquivo app.py
+   python src/app.py
+```
