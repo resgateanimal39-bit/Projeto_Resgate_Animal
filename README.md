@@ -1,7 +1,5 @@
 # 🐾 Projeto - Resgate Animal
 
-![gif](https://github.com/user-attachments/assets/c3ce81a1-c21e-4a73-abad-b95c70acd228)
-
 > 📝 Descrição:
 
 O Projeto Resgate Animal foi desenvolvido por alunos da Bolsa Futuro Digital, iniciativa da Softex voltada para iniciação à Programação, buscando praticar e aprender os conceitos de Engenharia de Software, Github, POO. O projeto consiste em promover a proteção animal, facilitando a conexão entre pets resgatados, adotantes e profissionais do ramo.
